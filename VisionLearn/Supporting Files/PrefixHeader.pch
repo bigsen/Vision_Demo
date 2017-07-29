@@ -1,0 +1,17 @@
+//
+//  PrefixHeader.pch
+//  VisionLearn
+//
+//  Created by dasen on 2017/6/30.
+//  Copyright © 2017年 Dasen. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define SCREEN_SIZE [UIScreen mainScreen].bounds.size
+
+#import "UIImage+ImageColor.h"
+#import "UIView+RMAdditions.h"
+#import <Vision/Vision.h>
+#endif /* PrefixHeader_pch */
