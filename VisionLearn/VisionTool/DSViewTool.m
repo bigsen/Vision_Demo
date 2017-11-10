@@ -19,7 +19,7 @@
         CGPoint points[landmarks2D.pointCount];
         // 转换特征的所有点
         for (int i=0; i<landmarks2D.pointCount; i++) {
-            vector_float2 point = [landmarks2D pointAtIndex:i];
+            CGPoint point = landmarks2D.normalizedPoints[i];
             CGFloat rectWidth = sourceImage.size.width * observation.boundingBox.size.width;
             CGFloat rectHeight = sourceImage.size.height * observation.boundingBox.size.height;
             CGPoint p = CGPointMake(point.x * rectWidth + observation.boundingBox.origin.x * sourceImage.size.width, observation.boundingBox.origin.y * sourceImage.size.height + point.y * rectHeight);
@@ -68,3 +68,4 @@
 }
 
 @end
+
