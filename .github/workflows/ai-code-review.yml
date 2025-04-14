@@ -21,4 +21,50 @@ jobs:
           MODEL: gpt-3.5-turbo
           LANGUAGE: English
           MAX_PATCH_LENGTH: 10000
-          PROMPT: Please review the code and check for potential issues including memory management, thread safety, error handling, and code organization. 
+          PROMPT: |
+            Please review the Flutter/Dart code changes and focus on:
+            1. State Management
+               - Proper use of StatefulWidget/StatelessWidget
+               - Efficient state updates and rebuilds
+               - Provider/Bloc/Riverpod patterns
+            
+            2. Performance Optimization
+               - Widget tree optimization
+               - Lazy loading and caching
+               - Image and resource management
+               - Unnecessary rebuilds
+            
+            3. Flutter Best Practices
+               - Widget composition and reusability
+               - Proper use of const constructors
+               - Keys usage
+               - Layout and constraints handling
+            
+            4. Memory Management
+               - Stream and animation disposal
+               - Large list handling
+               - Image caching
+               - Memory leaks in callbacks
+            
+            5. Error Handling
+               - Async error handling
+               - UI error states
+               - Platform-specific issues
+            
+            6. Code Organization
+               - Clean Architecture principles
+               - Feature-based structure
+               - Separation of concerns
+               - Dependency injection
+            
+            7. UI/UX Considerations
+               - Responsive design
+               - Platform-specific widgets
+               - Accessibility
+               - Material/Cupertino guidelines
+            
+            For each issue found:
+            1. Identify the specific problem
+            2. Explain why it's a concern
+            3. Suggest a concrete solution with Flutter-specific best practices
+            4. Provide a code example if applicable 
