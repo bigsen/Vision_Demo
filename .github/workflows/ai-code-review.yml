@@ -1,0 +1,29 @@
+name: AI Code Reviewer
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - review_requested
+permissions: write-all
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: AI Code Reviewer
+        uses: agjs/Github-Actions-AI-Code-Review@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_MODEL: "gpt-4"
+          EXCLUDE: "**/*.xcodeproj/**, **/*.xcworkspace/**, Pods/**, **/*.lock, **/*.md"
+          LANGUAGE: "English"
+          MAX_TOKENS: "700"
+          CUSTOM_PROMPTS: |
+            Focus on iOS/macOS development best practices.
+            Pay attention to Swift code style and conventions.
+            Check for potential memory leaks and performance issues.
+            Verify proper error handling and nil safety. 
