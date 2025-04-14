@@ -1,29 +1,24 @@
-name: AI Code Reviewer
+name: Code Review
+
+permissions:
+  contents: read
+  pull-requests: write
+
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-permissions: write-all
+    types: [opened, reopened, synchronize]
+
 jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: AI Code Reviewer
-        uses: anc95/ChatGPT-CodeReview@main
-        with:
+      - uses: actions/checkout@v3
+      - uses: anc95/ChatGPT-CodeReview@main
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: "sk-RlpiyjpoQgegcg6y00B9D5Ca35F642FaAf456cD63788Fb68"
-          OPENAI_API_MODEL: "gpt-3.5-turbo"
-          OPENAI_API_BASE_URL: "https://free.v36.cm"
-          EXCLUDE: "**/*.xcodeproj/**, **/*.xcworkspace/**, Pods/**, **/*.lock, **/*.md"
-          LANGUAGE: "English"
-          MAX_TOKENS: "700"
-          CUSTOM_PROMPTS: |
-            Focus on iOS/macOS development best practices.
-            Pay attention to Swift code style and conventions.
-            Check for potential memory leaks and performance issues.
-            Verify proper error handling and nil safety. 
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_ENDPOINT: https://free.v36.cm/v1
+          MODEL: gpt-3.5-turbo
+          LANGUAGE: English
+          MAX_PATCH_LENGTH: 10000
+          PROMPT: Please review the code and check for potential issues including memory management, thread safety, error handling, and code organization. 
