@@ -4,7 +4,6 @@ on:
     types:
       - opened
       - synchronize
-      - review_requested
 permissions: write-all
 jobs:
   review:
@@ -14,10 +13,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: AI Code Reviewer
-        uses: agjs/Github-Actions-AI-Code-Review@main
+        uses: anc95/ChatGPT-CodeReview@main
         env:
-          OPENAI_API_BASE: "https://free.v36.cm"
+          OPENAI_API_BASE_URL: "https://free.v36.cm"
           OPENAI_API_KEY: "sk-RlpiyjpoQgegcg6y00B9D5Ca35F642FaAf456cD63788Fb68"
+          MODEL: "gpt-3.5-turbo"
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: "sk-RlpiyjpoQgegcg6y00B9D5Ca35F642FaAf456cD63788Fb68"
