@@ -15,10 +15,10 @@ jobs:
       - name: AI Code Reviewer
         uses: anc95/ChatGPT-CodeReview@main
         env:
-          OPENAI_API_BASE_URL: "https://free.v36.cm"
-          OPENAI_API_KEY: "sk-RlpiyjpoQgegcg6y00B9D5Ca35F642FaAf456cD63788Fb68"
-          MODEL: "gpt-3.5-turbo"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: sk-RlpiyjpoQgegcg6y00B9D5Ca35F642FaAf456cD63788Fb68
+          OPENAI_API_BASE_URL: https://free.v36.cm
+          MODEL: gpt-3.5-turbo
         with:
           OPENAI_API_KEY: "sk-RlpiyjpoQgegcg6y00B9D5Ca35F642FaAf456cD63788Fb68"
           OPENAI_API_MODEL: "gpt-3.5-turbo"
