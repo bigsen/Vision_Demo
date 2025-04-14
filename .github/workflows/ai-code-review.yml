@@ -22,46 +22,73 @@ jobs:
           LANGUAGE: English
           MAX_PATCH_LENGTH: 10000
           PROMPT: |
-            Please review the Flutter/Dart code changes and focus on:
-            1. State Management
-               - Proper use of StatefulWidget/StatelessWidget
-               - Efficient state updates and rebuilds
-               - Provider/Bloc/Riverpod patterns
-            
-            2. Performance Optimization
-               - Widget tree optimization
-               - Lazy loading and caching
-               - Image and resource management
-               - Unnecessary rebuilds
-            
-            3. Flutter Best Practices
-               - Widget composition and reusability
-               - Proper use of const constructors
-               - Keys usage
-               - Layout and constraints handling
-            
-            4. Memory Management
-               - Stream and animation disposal
-               - Large list handling
-               - Image caching
-               - Memory leaks in callbacks
-            
-            5. Error Handling
-               - Async error handling
-               - UI error states
-               - Platform-specific issues
-            
-            6. Code Organization
-               - Clean Architecture principles
-               - Feature-based structure
-               - Separation of concerns
-               - Dependency injection
-            
-            7. UI/UX Considerations
-               - Responsive design
-               - Platform-specific widgets
-               - Accessibility
-               - Material/Cupertino guidelines
+            作为 Flutter/Dart 代码审查专家，请按以下格式对代码进行审查：
+
+            ## 代码审查要点
+
+            针对以下方面进行详细分析：
+
+            1. 状态管理
+               - StatefulWidget/StatelessWidget 使用是否恰当
+               - 状态更新和重建是否高效
+               - Provider/Bloc/Riverpod 使用是否规范
+
+            2. 性能优化
+               - Widget 树结构是否优化
+               - 是否实现了懒加载和缓存
+               - 资源管理是否合理
+               - 是否存在不必要的重建
+
+            3. Flutter 最佳实践
+               - Widget 组合和复用
+               - const 构造函数的使用
+               - Key 的使用
+               - 布局和约束处理
+
+            4. 内存管理
+               - Stream 和动画的释放
+               - 大列表的处理
+               - 图片缓存
+               - 回调中的内存泄漏
+
+            5. 错误处理
+               - 异步错误处理
+               - UI 错误状态
+               - 平台特定问题
+
+            6. 代码组织
+               - 清晰的架构原则
+               - 基于功能的结构
+               - 关注点分离
+               - 依赖注入
+
+            7. UI/UX 考虑
+               - 响应式设计
+               - 平台特定组件
+               - 无障碍支持
+               - Material/Cupertino 规范
+
+            ## 输出格式
+
+            对于发现的每个问题，请使用以下格式：
+
+            ### 问题描述
+            简明扼要地描述发现的问题
+
+            ### 影响
+            解释这个问题会带来什么影响
+
+            ### 建议改进
+            提供具体的改进建议
+
+            ### 示例代码
+            ```dart
+            // 如果适用，提供改进后的代码示例
+            ```
+
+            ---
+
+            最后提供一个简短的总结，说明代码的整体质量和最重要的改进点。
             
             For each issue found:
             1. Identify the specific problem
