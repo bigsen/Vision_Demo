@@ -1,32 +1,106 @@
-name: AI Code Reviewer
+name: Code Review
+
+permissions:
+  contents: read
+  pull-requests: write
+
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - review_requested
-permissions: write-all
+    types: [opened, reopened, synchronize]
+
 jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: AI Code Reviewer
-        uses: agjs/Github-Actions-AI-Code-Review@main
+      - uses: actions/checkout@v3
+      - uses: anc95/ChatGPT-CodeReview@main
         env:
-          OPENAI_API_BASE: "https://free.v36.cm"
-          OPENAI_API_KEY: "sk-RlpiyjpoQgegcg6y00B9D5Ca35F642FaAf456cD63788Fb68"
-        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: "sk-RlpiyjpoQgegcg6y00B9D5Ca35F642FaAf456cD63788Fb68"
-          OPENAI_API_MODEL: "gpt-3.5-turbo"
-          EXCLUDE: "**/*.xcodeproj/**, **/*.xcworkspace/**, Pods/**, **/*.lock, **/*.md"
-          LANGUAGE: "English"
-          MAX_TOKENS: "700"
-          CUSTOM_PROMPTS: |
-            Focus on iOS/macOS development best practices.
-            Pay attention to Swift code style and conventions.
-            Check for potential memory leaks and performance issues.
-            Verify proper error handling and nil safety. 
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_ENDPOINT: https://free.v36.cm/v1
+          MODEL: gpt-3.5-turbo
+          LANGUAGE: English
+          MAX_PATCH_LENGTH: 10000
+          PROMPT: |
+            你是一位资深的 Flutter 开发专家，请对提交的代码进行细致的评审。请使用中文回复，并按以下格式输出评审意见：
+
+            # Flutter 代码评审报告
+
+            ## 总体评价
+            对代码质量进行整体评估，说明主要优点和待改进之处。
+
+            ## 详细问题
+
+            ### 1. 状态管理
+            - 发现问题：描述发现的具体问题
+            - 潜在影响：分析问题可能造成的影响
+            - 改进建议：提供具体的改进方案
+            - 参考示例：
+              ```dart
+              // 提供改进后的代码示例
+              ```
+
+            ### 2. 性能优化
+            - 发现问题：描述发现的具体问题
+            - 潜在影响：分析问题可能造成的影响
+            - 改进建议：提供具体的改进方案
+            - 参考示例：
+              ```dart
+              // 提供改进后的代码示例
+              ```
+
+            ### 3. Flutter 最佳实践
+            - 发现问题：描述发现的具体问题
+            - 潜在影响：分析问题可能造成的影响
+            - 改进建议：提供具体的改进方案
+            - 参考示例：
+              ```dart
+              // 提供改进后的代码示例
+              ```
+
+            ### 4. 内存管理
+            - 发现问题：描述发现的具体问题
+            - 潜在影响：分析问题可能造成的影响
+            - 改进建议：提供具体的改进方案
+            - 参考示例：
+              ```dart
+              // 提供改进后的代码示例
+              ```
+
+            ### 5. 错误处理
+            - 发现问题：描述发现的具体问题
+            - 潜在影响：分析问题可能造成的影响
+            - 改进建议：提供具体的改进方案
+            - 参考示例：
+              ```dart
+              // 提供改进后的代码示例
+              ```
+
+            ### 6. 代码组织
+            - 发现问题：描述发现的具体问题
+            - 潜在影响：分析问题可能造成的影响
+            - 改进建议：提供具体的改进方案
+            - 参考示例：
+              ```dart
+              // 提供改进后的代码示例
+              ```
+
+            ### 7. UI/UX 设计
+            - 发现问题：描述发现的具体问题
+            - 潜在影响：分析问题可能造成的影响
+            - 改进建议：提供具体的改进方案
+            - 参考示例：
+              ```dart
+              // 提供改进后的代码示例
+              ```
+
+            ## 总结建议
+            总结最关键的改进点，并提供优先级建议。
+
+            注意：请确保评审意见具体、清晰，并提供可操作的改进建议。对于每个问题，都应该解释为什么这是一个问题，以及如何改进。
+            
+            For each issue found:
+            1. Identify the specific problem
+            2. Explain why it's a concern
+            3. Suggest a concrete solution with Flutter-specific best practices
+            4. Provide a code example if applicable 
