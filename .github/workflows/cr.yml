@@ -1,0 +1,22 @@
+name: Code Review
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anc95/ChatGPT-CodeReview@main
+        env:
+          GITHUB_TOKEN: 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
+          OPENAI_API_KEY: sk-beYCkolqlbnhgtV6DYrBdJqstnpajRtFTj0INIPJGSmDV8Dj
+          # optional
+          LANGUAGE: Chinese
+          PROMPT:
+          IGNORE_PATTERNS: /node_modules,*.md # Regex pattern to ignore files, separated by comma 
